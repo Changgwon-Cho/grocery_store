@@ -1,0 +1,45 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django DB
+db.sqlite3
+*.sqlite3
+
+# Django migrations (선택: 필요 시 제외 가능)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
+
+# VS Code settings (IDE 환경별)
+.vscode/
+
+# Environment variables
+.env
+
+# macOS, Windows 시스템 파일
+.DS_Store
+Thumbs.db
+
+# Pip dependency
+pip-log.txt
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy & Pyright cache
+.mypy_cache/
+.pyright/
+
+# Coverage reports
+htmlcov/
+coverage.xml
+*.cover
+
+# Log files
+*.log
