@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jay's Grocery Store</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="/">Jay's Grocery Store</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %} 
+              {% if user.role == 'customer' %}
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/basket/add/">Add to Basket</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/basket/my/">My Basket</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/basket/history/">Purchase History</a>
+                </li>
+              {% elif user.role == 'staff' %}
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/products/">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/products/add/">Add Product</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/basket/all/">All Baskets</a>
+                </li>
+              {% endif %} 
+            {% endif %}
+          </ul>
+
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+              <li class="nav-item mt-1">
+                <span class="navbar-text me-3 text-white">Hi, {{ user.username }} ({{ user.role }})</span>
+              </li>
+              <li class="nav-item me-2">
+                <a class="btn btn-outline-info btn-sm" href="{% url 'password_change' %}">Change Password</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'logout' %}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item me-2">
+                <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success btn-sm" href="{% url 'signup' %}">Sign Up</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">{% block content %}{% endblock content %}</div>
+  </body>
+</html>

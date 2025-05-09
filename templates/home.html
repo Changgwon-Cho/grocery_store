@@ -1,0 +1,10 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="text-center">
+  <h2 class="mb-4">Welcome to Jay's Grocery Store!</h2>
+
+  {% if user.is_authenticated %}
+    <p class="fs-5">Hello, <strong>{{ user.username }}</strong> ({{ user.role }})</p>
+  {% endif %}
+</div>
+{% endblock content %}
